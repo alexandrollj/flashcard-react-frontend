@@ -1,0 +1,28 @@
+.deck-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.deck-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: box-shadow 0.25s;
+}
+
+.deck-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.deck-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.deck-card p {
+  margin: 0;
+  color: #666;
+}

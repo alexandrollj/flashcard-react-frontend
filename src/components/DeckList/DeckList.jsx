@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAllDecks } from "../services/deckService.js";
+import { getAllDecks } from "../../services/deckService.js";
+import "./DeckList.css";
 
 export default function DeckList() {
   const [decks, setDecks] = useState([]);
@@ -15,13 +16,15 @@ export default function DeckList() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h2>Decks</h2>
-      <ul>
-        {decks.map((deck) => (
-          <li key={deck.id}>{deck.name}</li>
-        ))}
-      </ul>
+    <div className="deck-container">
+      {decks.map((deck) => (
+        <div key={deck.id} className="deck-card">
+          <h3>{deck.name}</h3>
+          <p>
+            {deck.cards.length} card{deck.cards.length !== 1 ? "s" : ""}
+          </p>
+        </div>
+      ))}
     </div>
   );
 }

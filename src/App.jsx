@@ -1,11 +1,10 @@
-import DeckList from "./components/DeckList.jsx";
+import DeckList from "./components/DeckList/DeckList.jsx";
 
 function App() {
   return (
-    <>
-      <h1>Flashcard App</h1>
+    <div>
       <DeckList />
-    </>
+    </div>
   );
 }
 
