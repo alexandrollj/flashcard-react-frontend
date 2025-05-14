@@ -11,11 +11,8 @@ export async function getAllDecks() {
 }
 
 export async function getDeckById(deckId) {
-  const response = await fetch(`${API_URL}/decks/${deckId}`);
-
-  if (!response.ok) throw new Error("Failed to fetch the requested deck");
-
-  return response.json();
+  const response = await axios.get(`${API_BASE_URL}/decks/${deckId}`);
+  return response.data;
 }
 
 export async function createDeck(deckData) {
