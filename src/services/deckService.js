@@ -1,10 +1,15 @@
-const API_URL = "http://localhost:5130";
+import axios from "axios";
+import { API_BASE_URL } from "../constants";
 
 export async function getAllDecks() {
-  const response = await fetch(`${API_URL}/decks`);
+  try {
+    const response = await axios.get(`${API_BASE_URL}/decks`);
+    console.log(response.data);
 
-  if (!response.ok) throw new Error("Failed to fetch decks");
-  return response.json();
+    return response.data;
+  } catch (error) {
+    console.log("Error while fetching decks: ", error);
+  }
 }
 
 export async function getDeckById(deckId) {
