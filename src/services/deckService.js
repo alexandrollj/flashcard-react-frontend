@@ -20,17 +20,8 @@ export async function getDeckById(deckId) {
 
 export async function createDeck(deckData) {
   try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(deckData),
-    });
-    if (!response.ok) throw new Error("Failed to create deck");
-
-    const newDeck = await response.json();
-    return newDeck;
+    const response = await axios.post(`${API_BASE_URL}/decks`, deckData);
+    return response.data;
   } catch (error) {
     console.error("Error creating deck:", error);
     throw error;
