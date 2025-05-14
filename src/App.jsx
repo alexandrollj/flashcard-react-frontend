@@ -16,7 +16,7 @@ function App() {
       <h1 className="text-3xl font-bold mb-6 text-center text-red-800">
         Flashcard Decks
       </h1>
-      {/* <DeckList decks={decks} /> */}
+      <DeckList decks={decks} />
     </div>
   );
 }
