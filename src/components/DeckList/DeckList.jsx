@@ -1,29 +1,47 @@
-export default function DeckList({ decks }) {
+import { deleteDeck } from "../../services/deckService";
+
+export default function DeckList({ decks, onDelete }) {
+  const handleDelete = async (deckId) => {
+    if (confirm("Are you sure you want to delete this deck?")) {
+      await deleteDeck(deckId);
+      onDelete(deckId);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {decks.map((deck) => (
         <div
           key={deck.id}
-          className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between hover:shadow-lg transition-shadow"
+          className="bg-white rounded-xl shadow-md overflow-hidden p-6 flex flex-col justify-between"
         >
-          <div>
-            <h2 className="text-xl font-semibold text-gray-700">{deck.name}</h2>
-            <p className="text-xs text-gray-400 mt-2">
-              Created: {new Date(deck.createdDate).toLocaleDateString()}
-            </p>{" "}
-            <p className="text-xs text-gray-400 mt-2">
-              Last Update: {new Date(deck.lastUpdateDate).toLocaleDateString()}
-            </p>
+          <div className="flex justify-between items-start">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900">
+                {deck.name}
+              </h2>
+              <p className="text-sm text-gray-500">
+                Created: {new Date(deck.createdDate).toLocaleDateString()}
+              </p>
+              <p className="text-sm text-gray-500">
+                Last Updated:{" "}
+                {new Date(deck.lastUpdateDate).toLocaleDateString()}
+              </p>
+            </div>
           </div>
-          <div className="mt-4 flex justify-between">
-            <button className="text sm bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-              View
+
+          <div className="mt-4 flex space-x-2">
+            <button
+              className="text-sm text-red-600 hover:underline"
+              onClick={() => handleDelete(deck.id)}
+            >
+              Delete
             </button>
-            <button className="text sm bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+            <button className="text-sm px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
               Edit
             </button>
-            <button className="text sm bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-              Delete
+            <button className="text-sm px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+              View
             </button>
           </div>
         </div>

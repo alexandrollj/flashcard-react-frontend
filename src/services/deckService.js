@@ -24,3 +24,12 @@ export async function createDeck(deckData) {
     throw error;
   }
 }
+
+export async function deleteDeck(deckId) {
+  try {
+    const deletedDeck = await axios.delete(`${API_BASE_URL}/decks/${deckId}`);
+  } catch (error) {
+    console.error("Failed to delete deck: ", error);
+    throw error;
+  }
+}
